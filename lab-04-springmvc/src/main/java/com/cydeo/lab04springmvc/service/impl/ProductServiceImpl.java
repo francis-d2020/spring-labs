@@ -8,14 +8,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     public static List<Product> PRODUCT_LIST = new ArrayList<>();
     @Override
+    //here we filter the products depending on the product name we enter in the url
     public List<Product> searchProduct(String name){
-        // todo implement search structure using string startsWith function
-        return new ArrayList<>();
+
+        return PRODUCT_LIST.stream().filter(product -> product.getName().startsWith(name))
+                .collect(Collectors.toList());
+
     }
 
     @Override
